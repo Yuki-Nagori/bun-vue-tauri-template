@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#58a6ff"/>
+      <stop offset="100%" stop-color="#1f6feb"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0883e"/>
+      <stop offset="100%" stop-color="#e06c00"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景圆角矩形 -->
+  <rect width="128" height="128" rx="28" fill="url(#bgGrad)"/>
+
+  <!-- 沙漏外框 -->
+  <path d="M36 28 L92 28 L80 64 L92 100 L36 100 L48 64 L36 28 Z"
+        stroke="url(#primaryGrad)" stroke-width="2.8" stroke-linejoin="round" fill="none" opacity="0.5"/>
+
+  <!-- 上腔流动曲线 -->
+  <path d="M46 36 Q64 48 82 36"
+        stroke="url(#primaryGrad)" stroke-width="3.2" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+  <!-- 下腔流动曲线 -->
+  <path d="M46 92 Q64 80 82 92"
+        stroke="url(#accentGrad)" stroke-width="3.2" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+  <!-- 上腔粒子（3个） -->
+  <circle cx="56" cy="42" r="3" fill="url(#primaryGrad)" opacity="0.6"/>
+  <circle cx="72" cy="40" r="2.5" fill="url(#primaryGrad)" opacity="0.4"/>
+  <circle cx="64" cy="46" r="2" fill="url(#primaryGrad)" opacity="0.3"/>
+
+  <!-- 下腔粒子（3个） -->
+  <circle cx="56" cy="86" r="3" fill="url(#accentGrad)" opacity="0.6"/>
+  <circle cx="72" cy="88" r="2.5" fill="url(#accentGrad)" opacity="0.4"/>
+  <circle cx="64" cy="82" r="2" fill="url(#accentGrad)" opacity="0.3"/>
+
+  <!-- 颈部——关键时刻的“光柱” -->
+  <rect x="60" y="56" width="8" height="16" rx="4" fill="url(#accentGrad)" opacity="0.5"/>
+
+  <!-- 颈部光晕 -->
+  <ellipse cx="64" cy="64" rx="12" ry="10" fill="#f0883e" opacity="0.08"/>
+
+  <!-- 抽象 K 字母融入 -->
+  <path d="M44 44 L56 64 L44 84"
+        stroke="url(#primaryGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+  <path d="M56 64 L80 84"
+        stroke="url(#primaryGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+
+  <!-- 底部点缀线条 -->
+  <path d="M44 108 L84 108" stroke="#30363d" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+</svg>

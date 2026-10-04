@@ -1,0 +1,5 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "entry": ["index.html", "tests/web/**/*.test.ts", "src-web/bench/*.ts"],
+  "project": ["src-web/**/*.ts", "src-web/**/*.vue"]
+}

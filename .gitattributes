@@ -1,0 +1,7 @@
+# 统一换行符为 LF：Windows 检出不因 autocrlf 破坏 Prettier / rustfmt 门禁
+* text=auto eol=lf
+
+# 二进制资产
+*.png binary
+*.ico binary
+*.icns binary

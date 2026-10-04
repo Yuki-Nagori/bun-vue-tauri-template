@@ -1,0 +1,7 @@
+dist/
+coverage/
+node_modules/
+target/
+src-tauri/gen/
+Cargo.lock
+bun.lock

@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+bun.lockb
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Coverage
+coverage/
+
+# Logs
+*.log
+
+# Editor / OS
+.idea/
+.DS_Store
+Thumbs.db
+
+# Tauri / Rust
+/target/
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# zcode
+.zcode/
+
+# Husky runtime files
+.husky/_/

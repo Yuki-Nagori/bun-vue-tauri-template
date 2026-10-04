@@ -1,0 +1,78 @@
+/* 模板演示样式，可整文件替换。 */
+:root {
+  --accent: #1f6feb;
+  --bg: #f5f6f8;
+  --fg: #1f2328;
+  --card: #ffffff;
+  --border: #d0d7de;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --fg: #e6e8eb;
+    --card: #161b22;
+    --border: #30363d;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.shell {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  padding: 40px 48px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  text-align: center;
+}
+
+.subtitle,
+.greeting {
+  opacity: 0.7;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
