@@ -192,6 +192,7 @@ dependencies = [
  "serde_json",
  "tauri",
  "tauri-build",
+ "template-core",
 ]
 
 [[package]]
@@ -3250,6 +3251,10 @@ dependencies = [
  "embed-resource",
  "toml 1.1.6+spec-1.1.0",
 ]
+
+[[package]]
+name = "template-core"
+version = "0.1.0"
 
 [[package]]
 name = "tendril"

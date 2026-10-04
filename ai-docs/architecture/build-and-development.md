@@ -28,7 +28,7 @@
 
 ## verify 构成
 
-`typecheck` · `typecheck:rust` · `lint` · `lint:rust` · `format:check` · `format:rust:check` · `test:coverage` · `test:rust` · `coverage:rust` · `knip`，共十项，任一失败即失败。husky 在每次 commit 前只跑双端格式检查（秒级反馈，拦住排版噪音）；lint、测试与覆盖率交给推送前自查与 CI——CI 把十项拆成具名步骤逐步执行，不聚合调用，失败直接定位。失败处理：格式挂了跑对应 format，lint 能自动修的走 `lint:fix`，测试挂了用 `test:watch` 本地复现。
+`typecheck` · `typecheck:rust` · `lint` · `lint:rust` · `format:check` · `format:rust:check` · `test:coverage` · `test:rust` · `coverage:rust` · `knip`，共十项，任一失败即失败。husky 在每次 commit 前只跑双端格式检查（秒级反馈，拦住排版噪音）；lint、测试与覆盖率交给推送前自查与 CI。CI 覆盖同一门禁但不逐步复刻十项：快门禁（双端格式、前端类型 / lint / 测试 / knip）前置，Rust 编译类步骤在后——clippy 已含全量类型检查故不单列 `cargo check`，llvm-cov 带插桩执行测试故不单列 `cargo test`；纯文档变更（`ai-docs/**`、`**/*.md`）不触发 CI。失败处理：格式挂了跑对应 format，lint 能自动修的走 `lint:fix`，测试挂了用 `test:watch` 本地复现。
 
 覆盖率口径：前端对逻辑层（`utils/`、`stores/`、`composables/`、组件旁 `use*.ts`）要求行 / 分支 / 函数 / 语句 100%；Rust 侧 `cargo llvm-cov --workspace --lib` 要求行 100%，`lib.rs` 是装配（事件循环不可测）经 `--ignore-filename-regex` 不计，命令与业务文件必须足额。改口径属于门禁变更，先登记 task。
 
@@ -44,7 +44,7 @@ $ bun run tauri:build
 
 ## 启用模板（clone 后第一步）
 
-1. 全局改名：`package.json` 的 `name`；`src-tauri/Cargo.toml` 的 package 与 `[lib] name`（下划线形态）及 `main.rs` 的 lib 引用；`tauri.conf.json` 的 `productName`、`identifier`（反向 DNS）、窗口 `title`；`index.html` 与 `App.vue` 的标题；README / AGENTS。改完跑 `bun run verify && bun run tauri:build` 确认链路完整。
+1. 全局改名：`package.json` 的 `name`；`src-tauri/Cargo.toml` 的 package 与 `[lib] name`（下划线形态）及 `main.rs` 的 lib 引用；`src-rust/template-core/Cargo.toml` 的 package 名（同步根 `Cargo.toml` 的 members 路径与 `[workspace.dependencies]` 键、`src-tauri/Cargo.toml` 的依赖键与 `commands.rs` 的 `use`）；`tauri.conf.json` 的 `productName`、`identifier`（反向 DNS）、窗口 `title`；`index.html` 与 `App.vue` 的标题；README / AGENTS。改完跑 `bun run verify && bun run tauri:build` 确认链路完整。
 2. 换图标：改 `public/icon.svg` 后执行 `bun run tauri icon public/icon.svg`，全套生成到 `src-tauri/icons/`（含 android / ios 子目录，纯桌面项目可删）。
-3. 写第一个真实命令：`commands.rs` 定义 → `generate_handler![]` 注册 → 需要插件能力时在 `capabilities/default.json` 加权限 → TS 声明同型并 `invoke` → 照 `tests/web/App.test.ts` mock 测试。示例 `greet` 被替换后删除。
+3. 写第一个真实命令：业务逻辑进 `src-rust/`（首个业务可直接改造 `template-core`，领域不同就新建 crate 并加入 members）→ `commands.rs` 只做转发 → `generate_handler![]` 注册 → 需要插件能力时在 `capabilities/default.json` 加权限 → TS 声明同型并 `invoke` → 照 `tests/web/App.test.ts` mock 测试。示例 `greet` 被替换后删除。
 4. 工作方式登记：下一个非平凡改动从[任务索引](../task-index.md)建 task 开始。

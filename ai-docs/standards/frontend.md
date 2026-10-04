@@ -4,7 +4,7 @@
 
 ## 逻辑归属
 
-组件只做编排与渲染；可复用、可测试的逻辑放 `src-web/utils/` 并配单测，`<script setup>` 顶层不堆过程式逻辑，超过十行就抽函数。全局状态与路由在需求真实出现前不引入（当前模板无 pinia / vueuse / vue-router）。
+组件只做编排与渲染；可复用、可测试的逻辑放 `src-web/utils/` 并配单测，`<script setup>` 顶层不堆过程式逻辑，超过十行就抽函数。全局状态与路由在需求真实出现前不引入（当前模板无 pinia / vueuse / vue-router）。TS 侧只做 UI：领域与系统能力归 Rust，跨界规则见[职责边界](../architecture/ts-rust-boundary.md)。
 
 ## SFC 与类型
 

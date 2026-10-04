@@ -15,7 +15,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:rust": "cargo test --workspace",
-    "coverage:rust": "cargo llvm-cov --workspace --lib --summary-only --fail-under-lines 100 --ignore-filename-regex \"lib\\.rs$\"",
+    "coverage:rust": "cargo llvm-cov --workspace --lib --show-missing-lines --fail-under-lines 100 --ignore-filename-regex \"lib\\.rs$\"",
     "bench": "bun run bench:web",
     "bench:web": "bun src-web/bench/greet.ts",
     "typecheck": "vue-tsc --noEmit",

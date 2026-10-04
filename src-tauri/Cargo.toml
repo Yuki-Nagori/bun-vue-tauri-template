@@ -15,3 +15,4 @@ tauri-build = { version = "2", features = [] }
 serde = { workspace = true }
 serde_json = "1"
 tauri.workspace = true
+template-core.workspace = true

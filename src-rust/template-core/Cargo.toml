@@ -1,0 +1,5 @@
+[package]
+name = "template-core"
+description = "纯业务 crate：不依赖 tauri，可独立单测与复用"
+version.workspace = true
+edition.workspace = true

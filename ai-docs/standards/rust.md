@@ -4,7 +4,7 @@
 
 ## 命令层
 
-`#[tauri::command]` 只做解参数、调逻辑、回包，命令集中在 `src-tauri/src/commands.rs`；单个命令超过一屏就把逻辑抽成普通函数或独立 crate。新命令三步：定义 → `generate_handler![]`（`lib.rs`）注册 → 用到插件 / 系统能力时在 `capabilities/default.json` 加权限（模板默认只有 `core:default`）。
+`#[tauri::command]` 只做解参数、调逻辑、回包，命令集中在 `src-tauri/src/commands.rs`；单个命令超过一屏就把逻辑抽进 `src-rust/` 业务 crate，命令只做转发——边界与通信契约见[职责边界](../architecture/ts-rust-boundary.md)，注释遵循[注释规范](comments.md)。新命令三步：定义 → `generate_handler![]`（`lib.rs`）注册 → 用到插件 / 系统能力时在 `capabilities/default.json` 加权限（模板默认只有 `core:default`）。
 
 invoke 的 args 对象按 camelCase 匹配 Rust snake_case 形参（[Tauri 命令文档](https://tauri.app/develop/calling-rust/)，2026-10-04 查阅）：单词形参无感，多词形参（`case_dir` ↔ `caseDir`）留意。参数与返回类型在 Rust 定型后，TS 侧立即声明同型——`invoke` 是无校验透传，两端口径漂移是最常见的静默 bug。
 
@@ -12,7 +12,7 @@ invoke 的 args 对象按 camelCase 匹配 Rust snake_case 形参（[Tauri 命�
 
 ## Cargo 工作区
 
-根 `Cargo.toml` 是虚拟 manifest：只放 `members`、`[workspace.dependencies]` 与 profile，依赖版本统一在 workspace 声明、成员以 `xxx.workspace = true` 继承。根 `Cargo.lock` 全工作区唯一，提交并保持同步。业务 crate 加入 `members` 即插即用。
+根 `Cargo.toml` 是虚拟 manifest：只放 `members`、`[workspace.dependencies]` 与 profile，依赖版本统一在 workspace 声明、成员以 `xxx.workspace = true` 继承。业务 crate 放 `src-rust/<crate>/`，加入 `members` 即插即用；成员间依赖同样统一在 `[workspace.dependencies]` 以 path 声明（现例 `template-core`），业务 crate 一律不依赖 tauri。根 `Cargo.lock` 全工作区唯一，提交并保持同步。
 
 ## 性能 profile（改前先读）
 

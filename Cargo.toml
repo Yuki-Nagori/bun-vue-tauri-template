@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["src-tauri"]
+members = ["src-tauri", "src-rust/template-core"]
 
 [workspace.package]
 version = "0.1.0"
@@ -9,6 +9,8 @@ edition = "2024"
 [workspace.dependencies]
 serde = { version = "1", features = ["derive"] }
 tauri = { version = "2", features = [] }
+# 成员间依赖统一在此以 path 声明，成员用 template-core.workspace = true 继承。
+template-core = { path = "src-rust/template-core" }
 
 # 依赖用行表级调试信息 + O1：tauri 系依赖 O0 下运行卡顿；改动本节会使依赖缓存整体失效。
 [profile.dev.package."*"]
